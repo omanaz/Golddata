@@ -11,11 +11,76 @@
   </style>
 </head>
 <body>
-  <!-- <div id="mapid"></div> -->
-  <form method="dialog">
-    <iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=is1pDRKeIU2V8LRAbgZxCtRKwDsmbFNIuOZlLKBmZH1UNVBPODlWSDM3RFlYRkxTMFlKNkVJWjdHQi4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+<!-- HTML -->
+<button id="openModal">Open Form</button>
 
-  </form>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <iframe id="formIframe" frameborder="0" marginwidth="0" marginheight="0" style="border: none; width: 100%; height: 600px; max-height: 80vh;"></iframe>
+  </div>
+</div>
+
+<script>
+  // JavaScript
+  const modal = document.getElementById('modal');
+  const openModalButton = document.getElementById('openModal');
+  const closeModalButton = document.getElementsByClassName('close')[0];
+  const formIframe = document.getElementById('formIframe');
+
+  openModalButton.addEventListener('click', function() {
+    modal.style.display = 'block';
+    formIframe.src = 'https://forms.office.com/Pages/ResponsePage.aspx?id=is1pDRKeIU2V8LRAbgZxCtRKwDsmbFNIuOZlLKBmZH1UNVBPODlWSDM3RFlYRkxTMFlKNkVJWjdHQi4u&embed=true';
+  });
+
+  closeModalButton.addEventListener('click', function() {
+    modal.style.display = 'none';
+    formIframe.src = '';
+  });
+</script>
+
+<style>
+  /* CSS */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    height: 650px;
+    max-height: 650px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
   <script>
     const mymap = L.map('mapid').setView([39.8283, -98.5795], 4);
